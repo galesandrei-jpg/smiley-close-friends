@@ -48,10 +48,7 @@ st.markdown(
 # Top image (robust path handling)
 # -------------------------
 img_candidates = [
-    "assets/IMG_8559.jpg",
-    "assets/IMG_8559.JPG",
-    "IMG_8559.jpg",
-    "IMG_8559.JPG",
+    "smiley.png",
 ]
 img_path = next((p for p in img_candidates if os.path.exists(p)), None)
 
