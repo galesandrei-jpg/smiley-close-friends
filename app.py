@@ -17,7 +17,7 @@ st.markdown(
     <style>
       /* Page background */
       .stApp {
-        background: #0057FF; /* light blue */
+        background: #004EE6; /* light blue */
       }
 
       /* Primary button (our submit) */
