@@ -16,12 +16,7 @@ st.markdown(
     <style>
       /* Page background */
       .stApp {
-        background: #4682B4; /* light blue */
-      }
-
-      /* Make the main content container look nice on light background */
-      div[data-testid="stVerticalBlock"] > div:has(> div[data-testid="stMarkdownContainer"]) {
-        /* no-op; keep default */
+        background: #0057FF; /* light blue */
       }
 
       /* Primary button (our submit) */
@@ -47,6 +42,13 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+# -------------------------
+# Top image
+# -------------------------
+col1, col2, col3 = st.columns([1, 1.2, 1])
+with col2:
+    st.image("assets/IMG_8559.jpg", use_container_width=True)
 
 # -------------------------
 # Config / validation
