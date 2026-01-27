@@ -9,6 +9,46 @@ from google.oauth2.service_account import Credentials
 st.set_page_config(page_title="Smiley Close Friends — Înscriere", page_icon="⭐", layout="centered")
 
 # -------------------------
+# Styles (background + blue button)
+# -------------------------
+st.markdown(
+    """
+    <style>
+      /* Page background */
+      .stApp {
+        background: #EAF4FF; /* light blue */
+      }
+
+      /* Make the main content container look nice on light background */
+      div[data-testid="stVerticalBlock"] > div:has(> div[data-testid="stMarkdownContainer"]) {
+        /* no-op; keep default */
+      }
+
+      /* Primary button (our submit) */
+      div[data-testid="stButton"] > button[kind="primary"] {
+        background-color: #1E73FF !important;  /* blue */
+        border: 1px solid #1E73FF !important;
+        color: white !important;
+        border-radius: 12px !important;
+        padding: 0.75rem 1rem !important;
+        font-weight: 700 !important;
+      }
+      div[data-testid="stButton"] > button[kind="primary"]:hover {
+        background-color: #155AD6 !important;
+        border-color: #155AD6 !important;
+        color: white !important;
+      }
+
+      /* Optional: slightly soften input borders on light bg */
+      input, textarea {
+        border-radius: 12px !important;
+      }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# -------------------------
 # Config / validation
 # -------------------------
 HANDLE_RE = re.compile(r"^[a-zA-Z0-9._]{1,30}$")
