@@ -1,3 +1,4 @@
+import os
 import re
 from datetime import datetime, timezone
 
@@ -16,7 +17,7 @@ st.markdown(
     <style>
       /* Page background */
       .stApp {
-        background: #0057FF; /* light blue */
+        background: #EAF4FF; /* light blue */
       }
 
       /* Primary button (our submit) */
@@ -34,7 +35,7 @@ st.markdown(
         color: white !important;
       }
 
-      /* Optional: slightly soften input borders on light bg */
+      /* Slightly soften inputs */
       input, textarea {
         border-radius: 12px !important;
       }
@@ -44,11 +45,25 @@ st.markdown(
 )
 
 # -------------------------
-# Top image
+# Top image (robust path handling)
 # -------------------------
-col1, col2, col3 = st.columns([1, 1.2, 1])
-with col2:
-    st.image("assets/IMG_8559.jpg", use_container_width=True)
+img_candidates = [
+    "assets/IMG_8559.jpg",
+    "assets/IMG_8559.JPG",
+    "IMG_8559.jpg",
+    "IMG_8559.JPG",
+]
+img_path = next((p for p in img_candidates if os.path.exists(p)), None)
+
+if img_path:
+    col1, col2, col3 = st.columns([1, 1.2, 1])
+    with col2:
+        st.image(img_path, use_container_width=True)
+else:
+    st.warning(
+        "Imaginea nu a fost găsită în repo. Verifică dacă există `assets/IMG_8559.jpg` "
+        "sau `IMG_8559.jpg` și că e commit-uită."
+    )
 
 # -------------------------
 # Config / validation
@@ -151,10 +166,7 @@ with st.container(border=True):
             sheet_id = st.secrets["SHEET_ID"]
 
             try:
-                append_row(
-                    sheet_id,
-                    [ig_n, email_n, source, created_at, "yes"],
-                )
+                append_row(sheet_id, [ig_n, email_n, source, created_at, "yes"])
                 st.success("Gata! Ești pe listă ✅")
             except Exception:
                 st.error("Nu am putut salva cererea acum. Te rog încearcă din nou mai târziu.")
