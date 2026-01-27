@@ -16,7 +16,7 @@ st.markdown(
     <style>
       /* Page background */
       .stApp {
-        background: #B2BCC6; /* light blue */
+        background: #4682B4; /* light blue */
       }
 
       /* Make the main content container look nice on light background */
