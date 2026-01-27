@@ -10,14 +10,33 @@ from google.oauth2.service_account import Credentials
 st.set_page_config(page_title="Smiley Close Friends — Înscriere", page_icon="⭐", layout="centered")
 
 # -------------------------
-# Styles (background + blue button)
+# Styles (background + white text + blue button)
 # -------------------------
 st.markdown(
     """
     <style>
       /* Page background */
       .stApp {
-        background: #191970; /* light blue */
+        background: #1b1f7a; /* deep blue */
+        color: #ffffff;
+      }
+
+      /* Force most text to white */
+      .stApp, .stApp p, .stApp span, .stApp div, .stApp label, .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {
+        color: #ffffff !important;
+      }
+
+      /* Captions / helper text */
+      [data-testid="stCaptionContainer"] {
+        color: rgba(255,255,255,0.85) !important;
+      }
+      [data-testid="stCaptionContainer"] * {
+        color: rgba(255,255,255,0.85) !important;
+      }
+
+      /* Inputs */
+      input, textarea {
+        border-radius: 12px !important;
       }
 
       /* Primary button (our submit) */
@@ -27,17 +46,12 @@ st.markdown(
         color: white !important;
         border-radius: 12px !important;
         padding: 0.75rem 1rem !important;
-        font-weight: 700 !important;
+        font-weight: 800 !important;
       }
       div[data-testid="stButton"] > button[kind="primary"]:hover {
         background-color: #155AD6 !important;
         border-color: #155AD6 !important;
         color: white !important;
-      }
-
-      /* Slightly soften inputs */
-      input, textarea {
-        border-radius: 12px !important;
       }
     </style>
     """,
@@ -45,7 +59,7 @@ st.markdown(
 )
 
 # -------------------------
-# Top image (robust path handling)
+# Top image (prefer root smiley.png)
 # -------------------------
 img_candidates = [
     "smiley 2.png",
@@ -56,11 +70,6 @@ if img_path:
     col1, col2, col3 = st.columns([1, 1.2, 1])
     with col2:
         st.image(img_path, use_container_width=True)
-else:
-    st.warning(
-        "Imaginea nu a fost găsită în repo. Verifică dacă există `assets/IMG_8559.jpg` "
-        "sau `IMG_8559.jpg` și că e commit-uită."
-    )
 
 # -------------------------
 # Config / validation
@@ -122,8 +131,8 @@ def read_all_rows(sheet_id: str) -> pd.DataFrame:
 st.markdown(
     """
     <div style="text-align:center; padding-top: 10px; padding-bottom: 10px;">
-      <h1 style="margin-bottom: 6px;">⭐ Hai pe Close Friends și devii oficial Omul lui Smiley!</h1>
-      <p style="font-size: 1.05rem; margin-top: 0;">
+      <h1 style="margin-bottom: 6px; color: #ffffff;">⭐ Hai pe Close Friends și devii oficial Omul lui Smiley!</h1>
+      <p style="font-size: 1.05rem; margin-top: 0; color: rgba(255,255,255,0.9);">
         Lasă-ți username-ul de Instagram ca să fii luat(ă) în considerare pentru Close Friends-ul lui Smiley.
       </p>
     </div>
